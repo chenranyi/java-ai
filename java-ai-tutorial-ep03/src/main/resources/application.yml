@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: java-ai-rag
+  
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:your-openai-api-key}
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+      chat:
+        options:
+          model: ${MODEL_NAME:gpt-4}
+          temperature: 0.7
+          max-tokens: 2000
+      embedding:
+        enabled: true
+        options:
+          model: text-embedding-ada-002
+    vectorstore:
+      mariadb:
+        initialize-schema: true
+        distance-type: COSINE
+        dimensions: 1536
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/rag_db
+    username: root
+    password: root123
+    driver-class-name: org.mariadb.jdbc.Driver
+
+server:
+  port: 8080
+
+app:
+  knowledge-base-path: ./knowledge
+
+logging:
+  level:
+    dev.langchain4j: DEBUG
+    org.springframework.ai: DEBUG

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: java-ai-agent
+  
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:your-openai-api-key}
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+      chat:
+        options:
+          model: ${MODEL_NAME:gpt-4}
+          temperature: 0.7
+          max-tokens: 2000
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    com.teaching: DEBUG
